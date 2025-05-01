@@ -1,0 +1,86 @@
+import 'package:abnayiy_wallet/Shared/Base/network/network-mappers.dart';
+
+class AppVersionModel extends BaseMappable{
+  bool? isSuccess;
+  Data? data;
+  String? errorCode;
+  List<String>? errors;
+
+  AppVersionModel({this.isSuccess, this.data, this.errorCode, this.errors});
+
+  AppVersionModel.fromJson(Map<String, dynamic> json) {
+    isSuccess = json['isSuccess'];
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    errorCode = json['errorCode'];
+    if (json['errors'] != null) {
+      errors = <String>[];
+      json['errors'].forEach((v) {
+        errors!.add(v);
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['isSuccess'] = this.isSuccess;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    data['errorCode'] = this.errorCode;
+    if (this.errors != null) {
+      data['errors'] = this.errors!.map((v) => v).toList();
+    }
+    return data;
+  }
+
+  @override
+  Mappable fromJson(Map<String, dynamic> json) {
+    isSuccess = json['isSuccess'];
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    errorCode = json['errorCode'];
+    if (json['errors'] != null) {
+      errors = <String>[];
+      json['errors'].forEach((v) {
+        errors!.add(v);
+      });
+    }
+    return AppVersionModel(isSuccess: isSuccess,data: data,errorCode: errorCode,errors: errors);
+  }
+}
+
+class Data {
+  int? id;
+  int? releaseAndroidVersion;
+  int? releaseIosVersion;
+  bool? isMandatory;
+  String? appleUrl;
+  String? googleUrl;
+
+  Data(
+      {this.id,
+        this.releaseAndroidVersion,
+        this.releaseIosVersion,
+        this.isMandatory,
+        this.appleUrl,
+        this.googleUrl});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    releaseAndroidVersion = json['releaseAndriodVersion'];
+    releaseIosVersion = json['releaseIosVersion'];
+    isMandatory = json['is_mandatory'];
+    appleUrl = json['appleUrl'];
+    googleUrl = json['googleUrl'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['releaseAndroidVersion'] = this.releaseAndroidVersion;
+    data['releaseIosVersion'] = this.releaseIosVersion;
+    data['is_mandatory'] = this.isMandatory;
+    data['appleUrl'] = this.appleUrl;
+    data['googleUrl'] = this.googleUrl;
+    return data;
+  }
+}

@@ -1,0 +1,12 @@
+import 'package:code/Features/Father/Service/service_body_screen.dart';
+import 'package:flutter/cupertino.dart';
+
+
+class IndexProvider extends ChangeNotifier {
+  Widget? screen = ServiceBodyScreen();
+
+  void changeProfileStatus({ Widget? screen}) {
+    this.screen = screen; // Update the class property
+    notifyListeners();
+  }
+}
